@@ -1,6 +1,9 @@
 //models/Expense.js
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+//var mongoose = require('mongoose');
+var hyena = require('hyena')
+//var Schema = mongoose.Schema;
+var Schema = hyena.Schema;
+
 var expenseSchema = new Schema({
   //description: String,
   //amount: Number,
@@ -13,4 +16,4 @@ var expenseSchema = new Schema({
   company: String,
   year: Number
 });
-module.exports = mongoose.model('Expense', expenseSchema);
+module.exports = hyena.model('Expense', expenseSchema);

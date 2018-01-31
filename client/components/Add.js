@@ -125,6 +125,18 @@ handleTextChange(e) {
           email: e.target.value
         });
       }
+      if (e.target.name == "phone") {
+        this.setState({
+          //amount: e.target.value
+          phone: e.target.value
+        });
+      }
+      if (e.target.name == "company") {
+        this.setState({
+          //amount: e.target.value
+          company: e.target.value
+        });
+      }
     }
 render() {
    if(this.state.messageFromServer == ''){
@@ -136,31 +148,21 @@ render() {
             onRequestClose={this.closeModal}
             contentLabel="Add Customer"
        className="Modal">
-<Link to={{pathname: '/', search: '&year='+this.state.year }} style={{ textDecoration: 'none' }}>
+<Link to={{pathname: '/', search: 'year='+this.state.year }} style={{ textDecoration: 'none' }}>
        <Button bsStyle="danger" bsSize="mini" onClick={this.closeModal}><span className="closebtn glyphicon glyphicon-remove"></span></Button>
       </Link><br/>
 <fieldset>
+      
        <label for="name">Name:</label><input type="text" id="name" name="name" value={this.state.name} onChange={this.handleTextChange}></input>
+      
        <label for="email">Email Id:</label><input type="text" id="email" name="email" value={this.state.email} onChange={this.handleTextChange}></input>
-       <label for="phone">Phone No:</label><input type="number" id="phone" name="phone" value={this.state.phone} onChange={this.handleTextChange}></input>
+      
+       <label for="phone">Phone No:</label><input type="text" id="phone" name="phone" value={this.state.phone} onChange={this.handleTextChange}></input>
+      
        <label for="company">Company:</label><input type="text" id="company" name="company" value={this.state.company} onChange={this.handleTextChange}></input>
 
-      /* <label for="month">Month:</label><select id="month" name="month" value={this.state.month} onChange={this.handleSelectChange}>
-            <option value="Jan" id="Jan">January</option>
-            <option value="Feb" id="Feb">Febrary</option>
-            <option value="Mar" id="Mar">March</option>
-            <option value="Apr" id="Apr">April</option>
-            <option value="May" id="May">May</option>
-            <option value="Jun" id="Jun">June</option>
-            <option value="Jul" id="Jul">July</option>
-            <option value="Aug" id="Aug">August</option>
-            <option value="Sep" id="Sep">September</option>
-            <option value="Oct" id="Oct">October</option>
-            <option value="Nov" id="Nov">November</option>
-            <option value="Dec" id="Dec">December</option>
-         </select>*/
+      
        <label for="year">Year:</label><select id="year" name="year" value={this.state.year} onChange={this.handleSelectChange}>
-            <option value="2017" id="17">2017</option>
             <option value="2018" id="18">2018</option>
             <option value="2019" id="19">2019</option>
          </select>
@@ -185,7 +187,7 @@ render() {
         className="Modal">
 <div className='button-center'>
         <h3>{this.state.messageFromServer}</h3>
-        <Link to={{pathname: '/', search: '&year='+this.state.year}} style={{ textDecoration: 'none' }}>
+        <Link to={{pathname: '/', search: 'year='+this.state.year}} style={{ textDecoration: 'none' }}>
          <Button bsStyle="success" bsSize="mini" onClick={this.closeModal}>Close the Dialog</Button>
         </Link>
        </div>

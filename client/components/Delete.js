@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 class Delete extends React.Component {
 constructor(){
   super();
-  this.state={id: '', month: '', year: ''};
+  this.state={id: '', year: ''};
   this.onClick = this.onClick.bind(this);
   this.delete = this.delete.bind(this);
 }
@@ -44,7 +44,7 @@ delete(e){
 render(){
   return (
     <Button bsStyle="danger" bsSize="small" onClick={this.onClick}>
-     <Link to={{pathname: '/', search: '&year='+this.state.year}} style={{ textDecoration: 'none' }}>
+     <Link to={{pathname: '/', search: 'year='+this.state.year}} style={{ textDecoration: 'none' }}>
                   <span className="glyphicon glyphicon-remove"></span>
          </Link>
     </Button>

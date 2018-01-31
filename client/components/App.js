@@ -38,7 +38,7 @@ handleSelect(selectedTab) {
      });
   }
 getData(ev, year){
-    axios.get('/getAll&year='+year)
+    axios.get('/getAll?year='+year)
       .then(function(response) {
         ev.setState({data: response.data});
         ev.setState({selectedYear: parseInt(year)});
@@ -49,21 +49,18 @@ render() {
     return (
       <div>
         <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect}>
-      //    <Tab eventKey={2016} title={<YearTabsRouter year='2016' />}><MonthTabs year='2016' monthlyActiveTab={this.state.selectedMonth}/></Tab>
-        //  <Tab eventKey={2017} title={<YearTabsRouter year='2017' />}><MonthTabs year='2017' monthlyActiveTab={this.state.selectedMonth}/></Tab>
           <Tab eventKey={2018} title={<YearTabsRouter year='2018'/>} />
           <Tab eventKey={2019} title={<YearTabsRouter year='2019'/>} />
         </Tabs>
-       // <Add selectedMonth={this.state.selectedMonth} selectedYear={this.state.selectedYear} />
         <Add selectedYear={this.state.selectedYear} />
         <table>
           <thead>
-            <tr><th></th><th className='desc-col'>Description</th><th className='button-col'>Amount</th><th className='button-col'>Year</th><th className='button-col'>Update</th><th className='button-col'>Delete</th></tr>
+            <tr><th></th><th className='desc-col'>Customer Name</th><th className='button-col'>Email</th><th className='button-col'>Phone Number</th><th className='button-col'>Year</th><th className='button-col'>Delete</th></tr>
           </thead>
           <tbody>
             {
               this.state.data.map((exp) => {
-                return  <tr><td className='counterCell'></td><td className='desc-col'>{exp.description}</td><td className='button-col'>{exp.name}</td><td className='button-col'>{exp.phone}</td><td className='button-col'>{exp.year}</td><td className='button-col'><Update expense={exp}/></td><td className='button-col'><Delete expense={exp} /></td></tr>
+                return  <tr><td className='counterCell'></td><td className='desc-col'>{exp.name}</td><td className='button-col'>{exp.email}</td><td className='button-col'>{exp.phone}</td><td className='button-col'>{exp.year}</td><td className='button-col'><Delete expense={exp} /></td></tr>
               })
             }
             </tbody>

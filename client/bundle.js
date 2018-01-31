@@ -31959,7 +31959,7 @@ var App = function (_React$Component) {
   }, {
     key: 'getData',
     value: function getData(ev, year) {
-      _axios2.default.get('/getAll&year=' + year).then(function (response) {
+      _axios2.default.get('/getAll?year=' + year).then(function (response) {
         ev.setState({ data: response.data });
         ev.setState({ selectedYear: parseInt(year) });
         // ev.setState({selectedMonth: month});
@@ -31974,23 +31974,9 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           _reactBootstrap.Tabs,
           { activeKey: this.state.activeTab, onSelect: this.handleSelect },
-          '//    ',
-          _react2.default.createElement(
-            _reactBootstrap.Tab,
-            { eventKey: 2016, title: _react2.default.createElement(_yearTabsRouter2.default, { year: '2016' }) },
-            _react2.default.createElement(MonthTabs, { year: '2016', monthlyActiveTab: this.state.selectedMonth })
-          ),
-          '//  ',
-          _react2.default.createElement(
-            _reactBootstrap.Tab,
-            { eventKey: 2017, title: _react2.default.createElement(_yearTabsRouter2.default, { year: '2017' }) },
-            _react2.default.createElement(MonthTabs, { year: '2017', monthlyActiveTab: this.state.selectedMonth })
-          ),
           _react2.default.createElement(_reactBootstrap.Tab, { eventKey: 2018, title: _react2.default.createElement(_yearTabsRouter2.default, { year: '2018' }) }),
           _react2.default.createElement(_reactBootstrap.Tab, { eventKey: 2019, title: _react2.default.createElement(_yearTabsRouter2.default, { year: '2019' }) })
         ),
-        '// ',
-        _react2.default.createElement(_Add2.default, { selectedMonth: this.state.selectedMonth, selectedYear: this.state.selectedYear }),
         _react2.default.createElement(_Add2.default, { selectedYear: this.state.selectedYear }),
         _react2.default.createElement(
           'table',
@@ -32005,22 +31991,22 @@ var App = function (_React$Component) {
               _react2.default.createElement(
                 'th',
                 { className: 'desc-col' },
-                'Description'
+                'Customer Name'
               ),
               _react2.default.createElement(
                 'th',
                 { className: 'button-col' },
-                'Amount'
+                'Email'
+              ),
+              _react2.default.createElement(
+                'th',
+                { className: 'button-col' },
+                'Phone Number'
               ),
               _react2.default.createElement(
                 'th',
                 { className: 'button-col' },
                 'Year'
-              ),
-              _react2.default.createElement(
-                'th',
-                { className: 'button-col' },
-                'Update'
               ),
               _react2.default.createElement(
                 'th',
@@ -32040,12 +32026,12 @@ var App = function (_React$Component) {
                 _react2.default.createElement(
                   'td',
                   { className: 'desc-col' },
-                  exp.description
+                  exp.name
                 ),
                 _react2.default.createElement(
                   'td',
                   { className: 'button-col' },
-                  exp.name
+                  exp.email
                 ),
                 _react2.default.createElement(
                   'td',
@@ -32056,11 +32042,6 @@ var App = function (_React$Component) {
                   'td',
                   { className: 'button-col' },
                   exp.year
-                ),
-                _react2.default.createElement(
-                  'td',
-                  { className: 'button-col' },
-                  _react2.default.createElement(Update, { expense: exp })
                 ),
                 _react2.default.createElement(
                   'td',
@@ -33146,6 +33127,18 @@ var Add = function (_React$Component) {
           email: e.target.value
         });
       }
+      if (e.target.name == "phone") {
+        this.setState({
+          //amount: e.target.value
+          phone: e.target.value
+        });
+      }
+      if (e.target.name == "company") {
+        this.setState({
+          //amount: e.target.value
+          company: e.target.value
+        });
+      }
     }
   }, {
     key: 'render',
@@ -33168,7 +33161,7 @@ var Add = function (_React$Component) {
               className: 'Modal' },
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: { pathname: '/', search: '&year=' + this.state.year }, style: { textDecoration: 'none' } },
+              { to: { pathname: '/', search: 'year=' + this.state.year }, style: { textDecoration: 'none' } },
               _react2.default.createElement(
                 _reactBootstrap.Button,
                 { bsStyle: 'danger', bsSize: 'mini', onClick: this.closeModal },
@@ -33196,84 +33189,13 @@ var Add = function (_React$Component) {
                 { 'for': 'phone' },
                 'Phone No:'
               ),
-              _react2.default.createElement('input', { type: 'number', id: 'phone', name: 'phone', value: this.state.phone, onChange: this.handleTextChange }),
+              _react2.default.createElement('input', { type: 'text', id: 'phone', name: 'phone', value: this.state.phone, onChange: this.handleTextChange }),
               _react2.default.createElement(
                 'label',
                 { 'for': 'company' },
                 'Company:'
               ),
               _react2.default.createElement('input', { type: 'text', id: 'company', name: 'company', value: this.state.company, onChange: this.handleTextChange }),
-              '/* ',
-              _react2.default.createElement(
-                'label',
-                { 'for': 'month' },
-                'Month:'
-              ),
-              _react2.default.createElement(
-                'select',
-                { id: 'month', name: 'month', value: this.state.month, onChange: this.handleSelectChange },
-                _react2.default.createElement(
-                  'option',
-                  { value: 'Jan', id: 'Jan' },
-                  'January'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: 'Feb', id: 'Feb' },
-                  'Febrary'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: 'Mar', id: 'Mar' },
-                  'March'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: 'Apr', id: 'Apr' },
-                  'April'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: 'May', id: 'May' },
-                  'May'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: 'Jun', id: 'Jun' },
-                  'June'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: 'Jul', id: 'Jul' },
-                  'July'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: 'Aug', id: 'Aug' },
-                  'August'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: 'Sep', id: 'Sep' },
-                  'September'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: 'Oct', id: 'Oct' },
-                  'October'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: 'Nov', id: 'Nov' },
-                  'November'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: 'Dec', id: 'Dec' },
-                  'December'
-                )
-              ),
-              '*/',
               _react2.default.createElement(
                 'label',
                 { 'for': 'year' },
@@ -33282,11 +33204,6 @@ var Add = function (_React$Component) {
               _react2.default.createElement(
                 'select',
                 { id: 'year', name: 'year', value: this.state.year, onChange: this.handleSelectChange },
-                _react2.default.createElement(
-                  'option',
-                  { value: '2017', id: '17' },
-                  '2017'
-                ),
                 _react2.default.createElement(
                   'option',
                   { value: '2018', id: '18' },
@@ -33338,7 +33255,7 @@ var Add = function (_React$Component) {
               ),
               _react2.default.createElement(
                 _reactRouterDom.Link,
-                { to: { pathname: '/', search: '&year=' + this.state.year }, style: { textDecoration: 'none' } },
+                { to: { pathname: '/', search: 'year=' + this.state.year }, style: { textDecoration: 'none' } },
                 _react2.default.createElement(
                   _reactBootstrap.Button,
                   { bsStyle: 'success', bsSize: 'mini', onClick: this.closeModal },
@@ -45802,7 +45719,7 @@ var Delete = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Delete.__proto__ || Object.getPrototypeOf(Delete)).call(this));
 
-    _this.state = { id: '', month: '', year: '' };
+    _this.state = { id: '', year: '' };
     _this.onClick = _this.onClick.bind(_this);
     _this.delete = _this.delete.bind(_this);
     return _this;
@@ -45852,7 +45769,7 @@ var Delete = function (_React$Component) {
         { bsStyle: 'danger', bsSize: 'small', onClick: this.onClick },
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: { pathname: '/', search: '&year=' + this.state.year }, style: { textDecoration: 'none' } },
+          { to: { pathname: '/', search: 'year=' + this.state.year }, style: { textDecoration: 'none' } },
           _react2.default.createElement('span', { className: 'glyphicon glyphicon-remove' })
         )
       );
@@ -45915,7 +45832,7 @@ var YearTabsRouter = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         _reactRouterDom.Link,
-        { to: { pathname: '/', search: '&year=' + this.props.year } },
+        { to: { pathname: '/', search: 'year=' + this.props.year } },
         _react2.default.createElement(
           'p',
           { style: this.state.style },
